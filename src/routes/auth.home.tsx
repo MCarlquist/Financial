@@ -6,6 +6,9 @@ export const Route = createFileRoute('/auth/home')({
   component: RouteComponent,
 })
 
+/**
+ * Renders the home dashboard with balance, graph, and recent activity sections.
+ */
 function RouteComponent() {
   return (
     <div className='grid grid-cols-4 grid-rows-2 gap-4'>

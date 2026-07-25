@@ -11,6 +11,11 @@ import {
   DialogTitle,
 } from "#/components/ui/dialog.tsx"
 
+/**
+ * Renders a styled command interface container.
+ *
+ * @param className - Additional CSS classes to apply to the container.
+ */
 function Command({
   className,
   ...props
@@ -27,6 +32,15 @@ function Command({
   )
 }
 
+/**
+ * Renders a command palette inside a dialog.
+ *
+ * @param title - The accessible dialog title.
+ * @param description - The accessible dialog description.
+ * @param children - The command palette content.
+ * @param className - Additional styles for the dialog content.
+ * @param showCloseButton - Whether to display the dialog close button.
+ */
 function CommandDialog({
   title = "Command Palette",
   description = "Search for a command to run...",
@@ -58,6 +72,11 @@ function CommandDialog({
   )
 }
 
+/**
+ * Renders a styled command search input with a search icon.
+ *
+ * @param className - Additional classes applied to the input.
+ */
 function CommandInput({
   className,
   ...props
@@ -80,6 +99,12 @@ function CommandInput({
   )
 }
 
+/**
+ * Renders a scrollable list of command results.
+ *
+ * @param className - Additional CSS classes for the list
+ * @returns The command list element
+ */
 function CommandList({
   className,
   ...props
@@ -96,6 +121,11 @@ function CommandList({
   )
 }
 
+/**
+ * Renders the empty state for a command list.
+ *
+ * @param props - Properties forwarded to the command empty-state primitive.
+ */
 function CommandEmpty({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Empty>) {
@@ -108,6 +138,11 @@ function CommandEmpty({
   )
 }
 
+/**
+ * Groups related commands and applies consistent heading styling.
+ *
+ * @param className - Additional classes to apply to the command group.
+ */
 function CommandGroup({
   className,
   ...props
@@ -124,6 +159,11 @@ function CommandGroup({
   )
 }
 
+/**
+ * Renders a styled divider between command groups or items.
+ *
+ * @param className - Additional CSS classes to apply to the separator.
+ */
 function CommandSeparator({
   className,
   ...props
@@ -137,6 +177,12 @@ function CommandSeparator({
   )
 }
 
+/**
+ * Renders a selectable command item with standardized layout and state styling.
+ *
+ * @param className - Additional CSS classes to apply to the command item.
+ * @returns The rendered command item.
+ */
 function CommandItem({
   className,
   ...props
@@ -153,6 +199,11 @@ function CommandItem({
   )
 }
 
+/**
+ * Renders a right-aligned keyboard shortcut label.
+ *
+ * @param className - Additional CSS classes for the shortcut label
+ */
 function CommandShortcut({
   className,
   ...props

@@ -3,18 +3,33 @@ import { Popover as PopoverPrimitive } from "radix-ui"
 
 import { cn } from "#/lib/utils.ts"
 
+/**
+ * Provides the root container for popover state and content.
+ *
+ * @param props - Props forwarded to the Radix popover root.
+ */
 function Popover({
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Root>) {
   return <PopoverPrimitive.Root data-slot="popover" {...props} />
 }
 
+/**
+ * Renders the control that opens and closes a popover.
+ */
 function PopoverTrigger({
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
 }
 
+/**
+ * Renders the popover content in a portal with configurable alignment, offset, and styling.
+ *
+ * @param className - Additional CSS classes for the popover content
+ * @param align - The alignment relative to the anchor
+ * @param sideOffset - The distance from the anchor
+ */
 function PopoverContent({
   className,
   align = "center",
@@ -37,12 +52,23 @@ function PopoverContent({
   )
 }
 
+/**
+ * Positions a popover relative to an anchor element.
+ *
+ * @param props - Properties forwarded to the Radix popover anchor.
+ */
 function PopoverAnchor({
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {
   return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />
 }
 
+/**
+ * Renders a styled container for popover header content.
+ *
+ * @param className - Additional CSS classes to apply to the header
+ * @param props - Additional properties for the header element
+ */
 function PopoverHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -53,6 +79,12 @@ function PopoverHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Renders a styled title container for a popover.
+ *
+ * @param className - Additional CSS classes to apply to the title
+ * @param props - Additional heading properties
+ */
 function PopoverTitle({ className, ...props }: React.ComponentProps<"h2">) {
   return (
     <div
@@ -63,6 +95,12 @@ function PopoverTitle({ className, ...props }: React.ComponentProps<"h2">) {
   )
 }
 
+/**
+ * Renders descriptive text for a popover.
+ *
+ * @param className - Additional classes to apply to the description
+ * @param props - Properties forwarded to the underlying paragraph element
+ */
 function PopoverDescription({
   className,
   ...props

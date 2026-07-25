@@ -2,6 +2,12 @@ import * as React from "react"
 
 import { cn } from "#/lib/utils.ts"
 
+/**
+ * Renders a responsive table with optional custom styling.
+ *
+ * @param className - Additional classes applied to the table element
+ * @returns A table wrapped in a horizontally scrollable container
+ */
 function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div
@@ -17,6 +23,11 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
   )
 }
 
+/**
+ * Renders a table header section with bottom borders on its rows.
+ *
+ * @returns A styled table header element.
+ */
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <thead
@@ -27,6 +38,12 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   )
 }
 
+/**
+ * Renders the body section of a styled table.
+ *
+ * @param className - Additional CSS classes to apply to the table body.
+ * @returns A table body element with the provided properties.
+ */
 function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   return (
     <tbody
@@ -37,6 +54,12 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   )
 }
 
+/**
+ * Renders a styled table footer.
+ *
+ * @param className - Additional classes to apply to the table footer
+ * @param props - Properties forwarded to the underlying `tfoot` element
+ */
 function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   return (
     <tfoot
@@ -50,6 +73,11 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   )
 }
 
+/**
+ * Renders a table row with consistent borders and state-based styling.
+ *
+ * @returns A styled table row element.
+ */
 function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   return (
     <tr
@@ -63,6 +91,12 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   )
 }
 
+/**
+ * Renders a styled table header cell.
+ *
+ * @param className - Additional CSS classes to apply to the header cell
+ * @param props - Native table header cell properties
+ */
 function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   return (
     <th
@@ -76,6 +110,11 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   )
 }
 
+/**
+ * Renders a styled table data cell.
+ *
+ * @param className - Additional classes to apply to the cell
+ */
 function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   return (
     <td
@@ -89,6 +128,11 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   )
 }
 
+/**
+ * Renders a styled table caption.
+ *
+ * @param className - Additional classes to apply to the caption
+ */
 function TableCaption({
   className,
   ...props

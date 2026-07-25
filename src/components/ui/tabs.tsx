@@ -4,6 +4,12 @@ import { Tabs as TabsPrimitive } from "radix-ui"
 
 import { cn } from "#/lib/utils.ts"
 
+/**
+ * Renders a styled tabs root with configurable orientation.
+ *
+ * @param className - Additional CSS classes for the tabs root.
+ * @param orientation - The layout orientation of the tabs.
+ */
 function Tabs({
   className,
   orientation = "horizontal",
@@ -38,6 +44,12 @@ const tabsListVariants = cva(
   }
 )
 
+/**
+ * Renders the tab list with configurable visual styling.
+ *
+ * @param variant - The visual style applied to the tab list.
+ * @param className - Additional classes to apply to the tab list.
+ */
 function TabsList({
   className,
   variant = "default",
@@ -54,6 +66,11 @@ function TabsList({
   )
 }
 
+/**
+ * Renders a styled tab trigger with orientation-, variant-, and state-aware behavior.
+ *
+ * @param className - Additional CSS classes for the tab trigger
+ */
 function TabsTrigger({
   className,
   ...props
@@ -73,6 +90,11 @@ function TabsTrigger({
   )
 }
 
+/**
+ * Renders the content panel for a tab.
+ *
+ * @param className - Additional classes to apply to the content panel
+ */
 function TabsContent({
   className,
   ...props

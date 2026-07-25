@@ -13,6 +13,9 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
+/**
+ * Renders a bar chart comparing weekly income and expenses.
+ */
 export function Chart() {
     return (
         <ChartContainer config={chartConfig} className="min-h-50 w-full">

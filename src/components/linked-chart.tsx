@@ -201,6 +201,12 @@ const DATE_FORMATS = [
 
 type DateFormat = typeof DATE_FORMATS[number]['value'];
 
+/**
+ * Provides a searchable selector for choosing the date format displayed by a chart.
+ *
+ * @param onFormatChange - Called with the newly selected date format.
+ * @param selectedFormat - The currently selected date format.
+ */
 function DateFormatSelector({ 
   onFormatChange, 
   selectedFormat, 
@@ -277,6 +283,12 @@ const isValidDateField = <TData,>(columns: ColumnDef<TData,any>[], dateField: st
   return dateField as keyof TData;
 };
 
+/**
+ * Validates that a chart type is supported.
+ *
+ * @param type - The chart type to validate.
+ * @returns `true` if the chart type is supported, `false` otherwise.
+ */
 function isValidChartType(type: string): type is ChartType {
   if (!Object.keys(CHART_TYPES).some(t => t === type)) {
     throw new Error(`Invalid chart type: ${type}. Must be one of: ${Object.keys(CHART_TYPES).join(', ')}`);
@@ -284,6 +296,12 @@ function isValidChartType(type: string): type is ChartType {
   return true;
 }
 
+/**
+ * Validates that a string is a supported date format.
+ *
+ * @param format - The date format to validate
+ * @returns `true` if the format is supported, `false` otherwise
+ */
 function isValidDateFormat(format: string): format is DateFormat {
   if (!DATE_FORMATS.some(f => f.value === format)) {
     throw new Error(`Invalid date format: ${format}. Must be one of: ${DATE_FORMATS.map(f => f.value).join(', ')}`);
@@ -291,10 +309,25 @@ function isValidDateFormat(format: string): format is DateFormat {
   return true;
 }
 
+/**
+ * Determines whether a field exists on the first item in a data collection.
+ *
+ * @param data - The data collection to inspect
+ * @param field - The field to check
+ * @returns `true` if the collection contains an item with the field, `false` otherwise
+ */
 function isValidDataField<T extends object>(data: T[], field: keyof T): boolean {
   return data.length > 0 && field in data[0];
 }
 
+/**
+ * Manages interactive chart range selection and applies the selected range to table filters or internal state.
+ *
+ * @param dateField - The data field used to identify the date filter.
+ * @param selectedFormat - The format used to parse selected chart labels.
+ * @param setColumnFilters - Optional state setter for applying the selected range to external column filters.
+ * @returns The current selection state and handlers for chart selection and reset actions.
+ */
 function useChartInteraction<TData>({ 
   dateField,
   selectedFormat,
@@ -380,6 +413,18 @@ function useChartInteraction<TData>({
   };
 }
 
+/**
+ * Renders an interactive date-grouped chart with configurable series, chart type, and date format.
+ *
+ * @param data - The data items to group and display.
+ * @param columns - Optional table columns used to validate external date filtering.
+ * @param setColumnFilters - Optional setter for applying selected date ranges to external column filters.
+ * @param dateField - The data field containing Unix timestamps in seconds.
+ * @param dateFormat - The format used to group and display dates.
+ * @param chartType - The chart visualization to render.
+ * @param title - The title displayed above the chart.
+ * @param aggregatorConfig - Functions defining the numeric series calculated from each data item.
+ */
 export function LinkedChart<TData extends object>({ 
   data,
   columns,
