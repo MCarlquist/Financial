@@ -5,7 +5,7 @@ import { prisma } from '#/db'
 const getTodos = createServerFn({
   method: 'GET',
 }).handler(async () => {
-  return await prisma.todo.findMany({
+  return await prisma.user.findMany({
     orderBy: { createdAt: 'desc' },
   })
 })

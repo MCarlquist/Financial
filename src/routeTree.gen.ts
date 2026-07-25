@@ -11,7 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as AuthAnalyticsRouteImport } from './routes/auth.analytics'
+import { Route as AuthExpenseRouteImport } from './routes/auth.expense'
+import { Route as AuthHomeRouteImport } from './routes/auth.home'
+import { Route as AuthReceiptsRouteImport } from './routes/auth.receipts'
 import { Route as DemoAiChatRouteImport } from './routes/demo/ai-chat'
 import { Route as DemoAiImageRouteImport } from './routes/demo/ai-image'
 import { Route as DemoAiStructuredRouteImport } from './routes/demo/ai-structured'
@@ -41,10 +46,35 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthAnalyticsRoute = AuthAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthExpenseRoute = AuthExpenseRouteImport.update({
+  id: '/expense',
+  path: '/expense',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthHomeRoute = AuthHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthReceiptsRoute = AuthReceiptsRouteImport.update({
+  id: '/receipts',
+  path: '/receipts',
+  getParentRoute: () => AuthRoute,
 } as any)
 const DemoAiChatRoute = DemoAiChatRouteImport.update({
   id: '/demo/ai-chat',
@@ -140,7 +170,12 @@ const DemoApiAiTtsRoute = DemoApiAiTtsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRouteWithChildren
   '/mcp': typeof McpRoute
+  '/auth/analytics': typeof AuthAnalyticsRoute
+  '/auth/expense': typeof AuthExpenseRoute
+  '/auth/home': typeof AuthHomeRoute
+  '/auth/receipts': typeof AuthReceiptsRoute
   '/demo/ai-chat': typeof DemoAiChatRoute
   '/demo/ai-image': typeof DemoAiImageRoute
   '/demo/ai-structured': typeof DemoAiStructuredRoute
@@ -163,7 +198,12 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRouteWithChildren
   '/mcp': typeof McpRoute
+  '/auth/analytics': typeof AuthAnalyticsRoute
+  '/auth/expense': typeof AuthExpenseRoute
+  '/auth/home': typeof AuthHomeRoute
+  '/auth/receipts': typeof AuthReceiptsRoute
   '/demo/ai-chat': typeof DemoAiChatRoute
   '/demo/ai-image': typeof DemoAiImageRoute
   '/demo/ai-structured': typeof DemoAiStructuredRoute
@@ -187,7 +227,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRouteWithChildren
   '/mcp': typeof McpRoute
+  '/auth/analytics': typeof AuthAnalyticsRoute
+  '/auth/expense': typeof AuthExpenseRoute
+  '/auth/home': typeof AuthHomeRoute
+  '/auth/receipts': typeof AuthReceiptsRoute
   '/demo/ai-chat': typeof DemoAiChatRoute
   '/demo/ai-image': typeof DemoAiImageRoute
   '/demo/ai-structured': typeof DemoAiStructuredRoute
@@ -212,7 +257,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/auth'
     | '/mcp'
+    | '/auth/analytics'
+    | '/auth/expense'
+    | '/auth/home'
+    | '/auth/receipts'
     | '/demo/ai-chat'
     | '/demo/ai-image'
     | '/demo/ai-structured'
@@ -235,7 +285,12 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/auth'
     | '/mcp'
+    | '/auth/analytics'
+    | '/auth/expense'
+    | '/auth/home'
+    | '/auth/receipts'
     | '/demo/ai-chat'
     | '/demo/ai-image'
     | '/demo/ai-structured'
@@ -258,7 +313,12 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/auth'
     | '/mcp'
+    | '/auth/analytics'
+    | '/auth/expense'
+    | '/auth/home'
+    | '/auth/receipts'
     | '/demo/ai-chat'
     | '/demo/ai-image'
     | '/demo/ai-structured'
@@ -282,6 +342,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRouteWithChildren
   McpRoute: typeof McpRoute
   DemoAiChatRoute: typeof DemoAiChatRoute
   DemoAiImageRoute: typeof DemoAiImageRoute
@@ -319,12 +380,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mcp': {
       id: '/mcp'
       path: '/mcp'
       fullPath: '/mcp'
       preLoaderRoute: typeof McpRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/auth/analytics': {
+      id: '/auth/analytics'
+      path: '/analytics'
+      fullPath: '/auth/analytics'
+      preLoaderRoute: typeof AuthAnalyticsRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/expense': {
+      id: '/auth/expense'
+      path: '/expense'
+      fullPath: '/auth/expense'
+      preLoaderRoute: typeof AuthExpenseRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/home': {
+      id: '/auth/home'
+      path: '/home'
+      fullPath: '/auth/home'
+      preLoaderRoute: typeof AuthHomeRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/receipts': {
+      id: '/auth/receipts'
+      path: '/receipts'
+      fullPath: '/auth/receipts'
+      preLoaderRoute: typeof AuthReceiptsRouteImport
+      parentRoute: typeof AuthRoute
     }
     '/demo/ai-chat': {
       id: '/demo/ai-chat'
@@ -455,9 +551,26 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthRouteChildren {
+  AuthAnalyticsRoute: typeof AuthAnalyticsRoute
+  AuthExpenseRoute: typeof AuthExpenseRoute
+  AuthHomeRoute: typeof AuthHomeRoute
+  AuthReceiptsRoute: typeof AuthReceiptsRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthAnalyticsRoute: AuthAnalyticsRoute,
+  AuthExpenseRoute: AuthExpenseRoute,
+  AuthHomeRoute: AuthHomeRoute,
+  AuthReceiptsRoute: AuthReceiptsRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AuthRoute: AuthRouteWithChildren,
   McpRoute: McpRoute,
   DemoAiChatRoute: DemoAiChatRoute,
   DemoAiImageRoute: DemoAiImageRoute,
@@ -481,3 +594,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

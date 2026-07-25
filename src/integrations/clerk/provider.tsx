@@ -5,5 +5,10 @@ export default function AppClerkProvider({
 }: {
   children: React.ReactNode
 }) {
-  return <ClerkProvider>{children}</ClerkProvider>
+  return (
+    <ClerkProvider
+    >
+      {children}
+    </ClerkProvider>
+  )
 }
