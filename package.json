@@ -23,6 +23,7 @@
   "dependencies": {
     "@clerk/tanstack-react-start": "^1.4.21",
     "@faker-js/faker": "^10.3.0",
+    "@huggingface/inference": "^4.13.23",
     "@modelcontextprotocol/sdk": "^1.27.1",
     "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.2",
@@ -50,6 +51,7 @@
     "highlight.js": "^11.11.1",
     "lucide-react": "^0.577.0",
     "nitro": "3.0.260610-beta",
+    "openai": "^6.49.0",
     "prisma": "^7.4.2",
     "radix-ui": "^1.6.6",
     "react": "^19.2.0",
