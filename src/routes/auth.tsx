@@ -17,7 +17,7 @@ function RouteComponent() {
     <div>
       <SidebarProvider>
         <HomeSidebar />
-        <main>
+        <main className='p-5'>
           <SidebarTrigger />
           <Outlet />
         </main>
