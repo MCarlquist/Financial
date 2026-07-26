@@ -2,11 +2,6 @@ import * as React from "react"
 
 import { cn } from "#/lib/utils.ts"
 
-/**
- * Renders a styled card container.
- *
- * @param className - Additional CSS classes to apply to the card.
- */
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -20,12 +15,6 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-/**
- * Renders the header section of a card.
- *
- * @param className - Additional CSS classes to apply to the header.
- * @param props - Additional properties forwarded to the underlying `div`.
- */
 function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -39,12 +28,6 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-/**
- * Renders a styled title within a card.
- *
- * @param className - Additional CSS classes to apply to the title.
- * @param props - Additional properties forwarded to the underlying `div`.
- */
 function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -55,12 +38,6 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-/**
- * Renders muted descriptive text within a card.
- *
- * @param className - Additional CSS classes to apply to the description.
- * @param props - Additional properties forwarded to the underlying `div`.
- */
 function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -71,12 +48,6 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-/**
- * Renders an action area within a card.
- *
- * @param className - Additional CSS classes to apply to the action area.
- * @returns The card action area element.
- */
 function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -90,12 +61,6 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-/**
- * Renders the main content section of a card.
- *
- * @param className - Optional additional CSS classes for the content section
- * @param props - Additional properties forwarded to the underlying `div`
- */
 function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -106,12 +71,6 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-/**
- * Renders the footer section of a card.
- *
- * @param className - Additional classes to apply to the footer.
- * @param props - Properties forwarded to the underlying `<div>` element.
- */
 function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

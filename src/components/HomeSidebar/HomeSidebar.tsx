@@ -7,10 +7,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { Link } from "@tanstack/react-router";
-import { User2 } from "lucide-react";
-
+} from '@/components/ui/sidebar'
+import { Link } from '@tanstack/react-router'
+import { Camera, User2 } from 'lucide-react'
+import { Button } from '../ui/button'
+import { Input } from '../ui/input'
 
 function HomeSidebar() {
   return (
@@ -31,19 +32,13 @@ function HomeSidebar() {
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <Link to="/auth/expense">
-              Expense Manager 
-            </Link>
+            <Link to="/auth/expense">Expense Manager</Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <Link to="/auth/analytics">
-              Analytics
-            </Link>
+            <Link to="/auth/analytics">Analytics</Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <Link to="/auth/receipts">
-              Receipts
-            </Link>
+            <Link to="/auth/receipts">Receipts</Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -56,4 +51,4 @@ function HomeSidebar() {
   )
 }
 
-export default HomeSidebar;
+export default HomeSidebar
