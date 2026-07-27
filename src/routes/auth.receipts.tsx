@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label";
+import { uploadImage } from '#/server/upload';
 
 
 export const Route = createFileRoute('/auth/receipts')({
@@ -21,29 +21,46 @@ export const Route = createFileRoute('/auth/receipts')({
 })
 
 function RouteComponent() {
+
+
     const [file, setFile] = useState<File | null>(null);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const fileList = event.target.files;
         if (fileList && fileList.length > 0) {
-          setFile(fileList[0]);
+            setFile(fileList[0]);
         } else {
           setFile(null);
         }
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-       event.preventDefault();
-       console.log(file);
+    const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log(file)
+        if (!file) return
+        const form = new FormData()
+        form.append('image', file)
+        const result = await uploadImage({
+          data: form,
+        })
+        console.log(result)
+        const res = await fetch('/api/image', {
+          method: 'POST',
+          body: JSON.stringify({filepath: result.filepath}),
+        })
+        const data = await res.json()
+        console.log(data)
+        setIsOpen(false);
      };
 
     return (
         <div>
             <h3>Scan Receipts</h3>
-            <Dialog>
+            <Dialog open={isOpen}>
 
                 <DialogTrigger>
-                    <Button variant="outline">Open Dialog</Button>
+                    <Button variant="outline" onClick={() => setIsOpen(true)}>Open Dialog</Button>
                 </DialogTrigger>
                 <form onSubmit={handleSubmit}>
                 <DialogContent className="sm:max-w-sm">
@@ -59,7 +76,7 @@ function RouteComponent() {
                         <DialogClose>
                             <Button variant="outline">Cancel</Button>
                         </DialogClose>
-                        <Button onClick={handleSubmit} type="submit">Save changes</Button>
+                            <Button onClick={handleSubmit} type="submit">Save changes</Button>
                       </DialogFooter>
                     </DialogContent>
                 </form>

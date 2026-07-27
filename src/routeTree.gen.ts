@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as ApiImageRouteImport } from './routes/api/image'
 import { Route as AuthAnalyticsRouteImport } from './routes/auth.analytics'
 import { Route as AuthExpenseRouteImport } from './routes/auth.expense'
 import { Route as AuthHomeRouteImport } from './routes/auth.home'
@@ -54,6 +55,11 @@ const AuthRoute = AuthRouteImport.update({
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiImageRoute = ApiImageRouteImport.update({
+  id: '/api/image',
+  path: '/api/image',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthAnalyticsRoute = AuthAnalyticsRouteImport.update({
@@ -172,6 +178,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRouteWithChildren
   '/mcp': typeof McpRoute
+  '/api/image': typeof ApiImageRoute
   '/auth/analytics': typeof AuthAnalyticsRoute
   '/auth/expense': typeof AuthExpenseRoute
   '/auth/home': typeof AuthHomeRoute
@@ -200,6 +207,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRouteWithChildren
   '/mcp': typeof McpRoute
+  '/api/image': typeof ApiImageRoute
   '/auth/analytics': typeof AuthAnalyticsRoute
   '/auth/expense': typeof AuthExpenseRoute
   '/auth/home': typeof AuthHomeRoute
@@ -229,6 +237,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRouteWithChildren
   '/mcp': typeof McpRoute
+  '/api/image': typeof ApiImageRoute
   '/auth/analytics': typeof AuthAnalyticsRoute
   '/auth/expense': typeof AuthExpenseRoute
   '/auth/home': typeof AuthHomeRoute
@@ -259,6 +268,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/mcp'
+    | '/api/image'
     | '/auth/analytics'
     | '/auth/expense'
     | '/auth/home'
@@ -287,6 +297,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/mcp'
+    | '/api/image'
     | '/auth/analytics'
     | '/auth/expense'
     | '/auth/home'
@@ -315,6 +326,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/mcp'
+    | '/api/image'
     | '/auth/analytics'
     | '/auth/expense'
     | '/auth/home'
@@ -344,6 +356,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRouteWithChildren
   McpRoute: typeof McpRoute
+  ApiImageRoute: typeof ApiImageRoute
   DemoAiChatRoute: typeof DemoAiChatRoute
   DemoAiImageRoute: typeof DemoAiImageRoute
   DemoAiStructuredRoute: typeof DemoAiStructuredRoute
@@ -392,6 +405,13 @@ declare module '@tanstack/react-router' {
       path: '/mcp'
       fullPath: '/mcp'
       preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/image': {
+      id: '/api/image'
+      path: '/api/image'
+      fullPath: '/api/image'
+      preLoaderRoute: typeof ApiImageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/analytics': {
@@ -572,6 +592,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AuthRoute: AuthRouteWithChildren,
   McpRoute: McpRoute,
+  ApiImageRoute: ApiImageRoute,
   DemoAiChatRoute: DemoAiChatRoute,
   DemoAiImageRoute: DemoAiImageRoute,
   DemoAiStructuredRoute: DemoAiStructuredRoute,

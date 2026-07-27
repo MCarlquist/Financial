@@ -4,10 +4,9 @@ import { saveUploadedFile } from "@/lib/file";
 export const uploadImage = createServerFn({
   method: "POST",
 })
+.validator((data: FormData) => data)
 .handler(async ({ data }) => {
-  const formData = data as unknown as FormData;
-
-  const file = formData.get("image");
+    const file = data.get("image");
 
   if (!(file instanceof File)) {
     throw new Error("No image uploaded");

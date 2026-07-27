@@ -9,9 +9,9 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
 import { Link } from '@tanstack/react-router'
-import { Camera, User2 } from 'lucide-react'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
+import { User2 } from 'lucide-react'
+
+
 
 function HomeSidebar() {
   return (
