@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { uploadImage } from '#/server/upload';
+import { base64Converter } from '#/utils/base64Converter';
 
 
 export const Route = createFileRoute('/auth/receipts')({
@@ -39,18 +40,14 @@ function RouteComponent() {
         event.preventDefault();
         console.log(file)
         if (!file) return
-        const form = new FormData()
-        form.append('image', file)
+        const imageBase64 = await base64Converter(file)
+        console.log('converted to base64')
         const result = await uploadImage({
-          data: form,
+            data: {
+              image: imageBase64,
+          }
         })
         console.log(result)
-        const res = await fetch('/api/image', {
-          method: 'POST',
-          body: JSON.stringify({filepath: result.filepath}),
-        })
-        const data = await res.json()
-        console.log(data)
         setIsOpen(false);
      };
 

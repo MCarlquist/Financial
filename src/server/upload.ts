@@ -1,26 +1,37 @@
-import { createServerFn } from "@tanstack/react-start";
-import { saveUploadedFile } from "@/lib/file";
+import { createServerFn } from '@tanstack/react-start'
+import { chat } from '@tanstack/ai'
+import { openaiText } from '@tanstack/ai-openai'
 
 export const uploadImage = createServerFn({
-  method: "POST",
+    method: 'POST',
 })
-.validator((data: FormData) => data)
-.handler(async ({ data }) => {
-    const file = data.get("image");
+    .validator((data: { image: string }) => data)
+    .handler(async ({ data }) => {
+        const image = data.image
 
-  if (!(file instanceof File)) {
-    throw new Error("No image uploaded");
-  }
+        // Extract mimeType if the client provided a data URI (`data:<mime>;base64,...`)
+        let mimeType = 'image/png'
+        if (typeof image === 'string' && image.startsWith('data:')) {
+            const m = image.match(/^data:([^;]+);base64,/) as RegExpMatchArray | null
+            if (m && m[1]) mimeType = m[1]
+        }
 
-  if (!file.type.startsWith("image/")) {
-    throw new Error("Invalid image");
-  }
+        // `chat()` can produce a streaming ChatStream which isn't serializable
+        // for server functions. Use `stream: false` and cast the final result
+        // to `any` so the handler returns JSON-serializable data.
+        const response = (await chat({
+            adapter: openaiText('gpt-4o'),
+            stream: false,
+            messages: [
+                {
+                    role: 'user',
+                    content: [
+                        { type: 'text', content: 'Please describe the contents of this image.' },
+                        { type: 'image', source: { type: 'data', value: image, mimeType } },
+                    ],
+                },
+            ],
+        })) as any
 
-  if (file.size > 10 * 1024 * 1024) {
-    throw new Error("Image too large");
-  }
-
-  const saved = await saveUploadedFile(file);
-
-  return saved;
-});
+        return response
+    })
