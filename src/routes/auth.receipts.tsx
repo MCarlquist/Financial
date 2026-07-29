@@ -24,7 +24,8 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { uploadImage } from '#/server/upload'
-import { getReceipts, saveReceipt, deleteReceipt, type SaveReceiptInput } from '#/server/receipts'
+import { getReceipts, saveReceipt, deleteReceipt } from '`#/server/receipts`'
+import type { SaveReceiptInput } from '`#/server/receipts`'
 import { base64Converter } from '#/utils/base64Converter'
 import {
   Plus,
