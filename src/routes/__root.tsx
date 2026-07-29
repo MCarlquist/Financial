@@ -49,9 +49,14 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   shellComponent: RootDocument,
 })
 
+import { ensurePrismaUser } from '#/server/user'
+
 // 1. Fetch authentication details securely on the server
 const fetchClerkAuth = createServerFn({ method: "GET" }).handler(async () => {
   const { userId } = await auth()
+  if (userId) {
+    await ensurePrismaUser(userId)
+  }
   return { userId }
 });
 
